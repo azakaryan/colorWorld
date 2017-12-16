@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the GamePage page.
@@ -15,11 +16,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class GamePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad GamePage');
+  }
+
+  goHome () {
+    debugger;
+    this.navCtrl.push(HomePage);
   }
 
 }
