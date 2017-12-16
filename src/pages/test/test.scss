@@ -2,7 +2,7 @@ page-test {
 
     // you would probably need to change position to absolute and add width and height
     .chameleon-container {
-        background-image: url('/assets/imgs/chameleon_02.png');
+        background-image: url('/assets/imgs/chameleon.gif');
         overflow: hidden;
         position: relative;
         display: block;
@@ -18,22 +18,8 @@ page-test {
         // mask-repeat: no-repeat;
     }
 
-    .chameleon-frame-1 {
-        background-image: url('/assets/imgs/chameleon_01.png');
-    }
-    .chameleon-frame-2 {
-        background-image: url('/assets/imgs/chameleon_02.png');
-    }
-    .chameleon-frame-3 {
-        background-image: url('/assets/imgs/chameleon_03.png');
-    }
-    .chameleon-frame-4 {
-        background-image: url('/assets/imgs/chameleon_04.png');
-    }
-
     .chamelon-child {
-        
-        background-image: url('/assets/imgs/chameleon_02.png');
+        background-image: url('/assets/imgs/chameleon.gif');
         background-color: #0f0;
         background-blend-mode: multiply;
         background-repeat: no-repeat;
@@ -46,6 +32,24 @@ page-test {
         mask-image: url('/assets/imgs/chameleon_mask.png');
         mask-size: 100%;
         mask-repeat: no-repeat;
+    }
+
+
+    .chameleon-frame-1,
+    .chameleon-frame-1 > .chamelon-child {
+        background-image: url('/assets/imgs/chameleon_01.png');
+    }
+    .chameleon-frame-2,
+    .chameleon-frame-2 > .chamelon-child {
+        background-image: url('/assets/imgs/chameleon_02.png');
+    }
+    .chameleon-frame-3,
+    .chameleon-frame-3 > .chamelon-child {
+        background-image: url('/assets/imgs/chameleon_03.png');
+    }
+    .chameleon-frame-4,
+    .chameleon-frame-4 > .chamelon-child {
+        background-image: url('/assets/imgs/chameleon_04.png');
     }
 
     @keyframes animatedBackground {

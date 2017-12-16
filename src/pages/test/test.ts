@@ -14,9 +14,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'test.html',
 })
 export class TestPage {
-
+  public frameClass:string = null;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-
+    this.frameClass = 'some-css-class';
   }
 
   ionViewDidLoad() {
