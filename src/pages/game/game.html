@@ -19,14 +19,43 @@
     <canvas id="canvas"></canvas>
   </div>
 
+  <!--<div>-->
+    <!--<svg width="96px" height="96px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">-->
+  <!--</div>-->
 
   <div class="color-buttons">
-    <div class="inner">
-      <button ion-button color="danger"></button>
-      <button ion-button color="secondary"></button>
-      <button ion-button></button>
-    </div>
-    <button ion-button (click)="goHome()">Home</button>
+
+    <ion-list>
+
+      <ion-item>
+        <ion-range (ionChange)="colorChange('RED')" min="0" max="255" step="64" snaps="true" color="danger" [(ngModel)]="redValue">
+          <ion-icon small range-left name="brush" color="danger"></ion-icon>
+          <ion-icon small range-right name="brush" color="danger"></ion-icon>
+        </ion-range>
+      </ion-item>
+
+      <ion-item>
+        <ion-range (ionChange)="colorChange('GREEN')" min="0" max="255" step="64" snaps="true" color="secondary" [(ngModel)]="greenValue">
+          <ion-icon small range-left name="brush" color="secondary"></ion-icon>
+          <ion-icon small range-right name="brush" color="secondary"></ion-icon>
+        </ion-range>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-range (ionChange)="colorChange('BLUE')" min="0" max="255" step="64" snaps="true" [(ngModel)]="blueValue">
+          <ion-icon small range-left name="brush" color="blue"></ion-icon>
+          <ion-icon small range-right name="brush"></ion-icon>
+        </ion-range>
+      </ion-item>
+
+    </ion-list>
+
+    <!--<div class="inner">-->
+      <!--<button ion-button color="danger"></button>-->
+      <!--<button ion-button color="secondary"></button>-->
+      <!--<button ion-button></button>-->
+    <!--</div>-->
   </div>
 
 
