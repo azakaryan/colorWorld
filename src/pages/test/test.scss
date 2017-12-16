@@ -1,3 +1,40 @@
 page-test {
+    .chameleon-container {
+        background-image: url('/assets/imgs/chameleon.png');
+        display: block;
+        width: 50vw;
+        height: 50vh;
+        z-index: 1;
+        background-color: #0f0;
+        background-blend-mode: multiply;
+        background-repeat: no-repeat;
+        background-size: 100%;       
+        mask: url('/assets/imgs/chameleon_mask.png');
+        mask-size: 100%;
+        mask-repeat: no-repeat;
+    }
 
+    .container {
+        background-color: #ffffff;
+    }
+
+
+/*
+mix-blend-mode: normal;
+mix-blend-mode: multiply;
+mix-blend-mode: screen;
+mix-blend-mode: overlay;
+mix-blend-mode: darken;
+mix-blend-mode: lighten;
+mix-blend-mode: color-dodge;
+mix-blend-mode: color-burn;
+mix-blend-mode: hard-light;
+mix-blend-mode: soft-light;
+mix-blend-mode: difference;
+mix-blend-mode: exclusion;
+mix-blend-mode: hue;
+mix-blend-mode: saturation;
+mix-blend-mode: color;
+mix-blend-mode: luminosity;
+*/
 }
