@@ -9,7 +9,7 @@ page-test {
         background-blend-mode: multiply;
         background-repeat: no-repeat;
         background-size: 100%;       
-        mask: url('/assets/imgs/chameleon_mask.png');
+        mask-image: url('/assets/imgs/chameleon_mask.png');
         mask-size: 100%;
         mask-repeat: no-repeat;
     }
