@@ -108,7 +108,8 @@ class Level {
     this.timer = new Timer(completionTriggerFunction, this.timeLimit);
 
     this.box = new Box(canvas, ctx, {});
-    this.box.update({color: opt.initialColor});
+    this.box.update(opt.initialColor);
+    this.canvas.style.backgroundColor = opt.requiredColor;
     // this.box.drawSmile();
   }
 
