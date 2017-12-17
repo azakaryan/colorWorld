@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { GamePage } from '../pages/game/game';
 import { TestPage } from '../pages/test/test';
+import { ScoreProvider } from '../providers/score/score';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TestPage } from '../pages/test/test';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ScoreProvider
   ]
 })
 export class AppModule {}
