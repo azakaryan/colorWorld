@@ -18,7 +18,7 @@ export class GamePage {
   public levels = [
     {
       requiredColor: "rgb(0,255,255)",
-      timeLimit: 150,
+      timeLimit: 15,
       numberOfSections: 1,
       currentLevel: 1,
       initialColor: 'white'
@@ -59,21 +59,28 @@ export class GamePage {
   goHome () {
     this.cleanUp();
     this.navCtrl.push(HomePage);
+    window.location.reload();
+  }
+
+  startNextLevel() {
+    debugger;
+    this.cleanUp();
+    this.level = new Level(this.canvas, this.ctx, this.levels[this.currentLevel], this.completionTriggerFunction.bind(this));
   }
 
   cleanUp() {
-    this.ctx = null;
-    this.canvas = null;
-    this.level = null;
-    this.currentLevel = 0;
+    this.level.cleanUp();
+    this.currentLevel++;
   }
 
   completionTriggerFunction(status) {
+    this.level.isPausVisible = false;
     if (status) {
       debugger;
       // Go To next level
       this.currentLevel++;
       this.level.isSuccess = true;
+      this.level.cleanUp();
     } else {
       this.level.isFail = true;
       // Repeat with the same level
@@ -96,6 +103,7 @@ class Level {
   public numberOfSections:number;
   public currentLevel:number;
   public isPaused: boolean;
+  public isPausVisible: boolean
   public isSuccess: boolean;
   public isFail: boolean;
 
@@ -104,6 +112,7 @@ class Level {
     this.timeLimit = opt.timeLimit || 25;
     this.numberOfSections = opt.numberOfSections || 25;
     this.currentLevel = opt.currentLevel || 25;
+    this.isPausVisible = false;
     this.isPaused = false;
     this.isSuccess = false;
     this.isFail = false;
@@ -116,7 +125,7 @@ class Level {
 
   pause() {
     debugger;
-    this.isPaused = true;
+    this.isPausVisible = this.isPaused = true;
     this.timer.pause();
   }
 
@@ -146,6 +155,7 @@ class Level {
 
   private cleanUp() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.timer.cleanUp();
   };
 }
 
@@ -189,6 +199,13 @@ export class Timer {
   }
   clear() {
     clearInterval(this.timerHandler);
+  }
+  cleanUp() {
+    this.clear();
+    this.timerHandler = null;
+    this.time = null;
+    this.tmp = null;
+    this.el = null;
   }
 }
 
