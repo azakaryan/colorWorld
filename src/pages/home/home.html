@@ -1,4 +1,5 @@
 <ion-header>
+    <link href="https://fonts.googleapis.com/css?family=Aladin" rel="stylesheet">
   <ion-navbar>
     <ion-title>
   		This is {{testData}}: Home page.
@@ -7,18 +8,19 @@
 </ion-header>
 
 <ion-content padding>
+
   <div class="main-menu" >
+    <img src="/assets/imgs/rgbic.png" class="logo"><br>
+    <img src="/assets/imgs/character.png" class="logo logo-character">
+
     <div class="item">
-      <button ion-button >...</button>
+      <button ion-button round outline (click)="goTo('GAME_PAGE')">Play</button>
     </div>
     <div class="item">
-      <button ion-button (click)="goTo('TEST_PAGE')" >test...</button>
-    </div>
+        <button ion-button round outline (click)="goTo('TEST_PAGE')" >How to play</button>
+      </div>
     <div class="item">
-      <button ion-button (click)="goTo('GAME_PAGE')" color="secondary">Starte New Game</button>
-    </div>
-    <div class="item">
-      <button ion-button (click)="goTo('EXIT')" color="danger">Exit</button>
+      <button ion-button round outline (click)="goTo('EXIT')">settings</button>
     </div>
   </div>
 
