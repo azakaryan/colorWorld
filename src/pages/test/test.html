@@ -13,9 +13,78 @@
 </ion-header>
 
 
-<ion-content padding class="container">
-  Chameleon example:
-  <div class="chameleon-container" ng-class="$frameClass">
-    <div class="chamelon-child"></div>
-  </div>
-</ion-content>
+<ion-content>
+    <div class="overlay" *ngIf="level && (level.isPaused || level.isSuccess|| level.isFail)">
+  
+      <div class="inner">
+          <div class="paused" *ngIf="level.isPaused">
+              Paused...
+              <button ion-button color="danger" (click)="goHome()">Exit</button>
+            </div>
+            <div class="success" *ngIf="level.isSuccess">
+              <h1>SUCCESS</h1>
+              <button ion-button color="danger">Exit</button>
+              <button ion-button color="secondary">Continue</button>
+            </div>
+            <div class="fail" *ngIf="level.isFail">
+              <h1>FAIL</h1>
+              <button ion-button color="danger">Exit</button>
+              <button ion-button color="secondary">Continue</button>
+            </div>
+      </div>
+    </div>
+  
+    <div *ngIf="level">
+      <div class="timer">{{level.timer.el}}</div>
+      <div class="score">Level:{{level.currentLevel}}</div>
+      <div class="action-btns">
+        <button ion-button (click)="level.pause()" *ngIf="!level.isPaused">||</button>
+        <button class="resume" ion-button (click)="level.resume()" *ngIf="level.isPaused"> > </button>
+      </div>
+    </div>
+  
+    <div id="background" class="canvas-container container">
+        <div class="chameleon-container">
+            <div id="chameleon" class="chamelon-child"></div>
+          </div>
+    </div>
+  
+    <!--<div>-->
+      <!--<svg width="96px" height="96px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">-->
+    <!--</div>-->
+    <div class="footer-part" *ngIf="level && level.box">
+      <div class="color-controls">
+  
+        <ion-list>
+          <ion-item>
+            <ion-range (ionChange)="level.colorChanged()" min="0" max="255" step="64" snaps="true" color="danger" [(ngModel)]="level.box.redValue">
+              <ion-icon small range-left name="brush" color="danger"></ion-icon>
+              <ion-icon small range-right name="brush" color="danger"></ion-icon>
+            </ion-range>
+          </ion-item>
+  
+          <ion-item>
+            <ion-range (ionChange)="level.colorChanged()" min="0" max="255" step="64" snaps="true" color="secondary" [(ngModel)]="level.box.greenValue">
+              <ion-icon small range-left name="brush" color="secondary"></ion-icon>
+              <ion-icon small range-right name="brush" color="secondary"></ion-icon>
+            </ion-range>
+          </ion-item>
+  
+          <ion-item>
+            <ion-range (ionChange)="level.colorChanged()" min="0" max="255" step="64" snaps="true" [(ngModel)]="level.box.blueValue">
+              <ion-icon small range-left name="brush" color="blue"></ion-icon>
+              <ion-icon small range-right name="brush"></ion-icon>
+            </ion-range>
+          </ion-item>
+        </ion-list>
+  
+        <!--<div class="inner">-->
+          <!--<button ion-button color="danger"></button>-->
+          <!--<button ion-button color="secondary"></button>-->
+          <!--<button ion-button></button>-->
+        <!--</div>-->
+      </div>
+    </div>
+  
+  </ion-content>
+  
