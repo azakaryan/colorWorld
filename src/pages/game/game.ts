@@ -18,7 +18,7 @@ export class GamePage {
   public levels = [
     {
       requiredColor: "rgb(0,255,255)",
-      timeLimit: 15,
+      timeLimit: 150,
       numberOfSections: 1,
       currentLevel: 1,
       initialColor: 'white'
@@ -57,8 +57,15 @@ export class GamePage {
   }
 
   goHome () {
-    debugger;
+    this.cleanUp();
     this.navCtrl.push(HomePage);
+  }
+
+  cleanUp() {
+    this.ctx = null;
+    this.canvas = null;
+    this.level = null;
+    this.currentLevel = 0;
   }
 
   completionTriggerFunction(status) {
