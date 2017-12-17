@@ -109,8 +109,14 @@ page-game {
     height: 100%;
     top: 0px;
     left: 0px;
-    background: rgba(12, 16, 9, 0.96);
+    background: rgba(0, 0, 0, 0.8);
     text-align: center;
+    font-family: 'Aladin', cursive;
+    margin: auto;
+    h1 {
+      margin: 20vh auto 15vh auto;
+      font-size: 8vh;
+    }
     div {
       top: 50px;
       z-index: 1091;
@@ -122,19 +128,29 @@ page-game {
       margin: 0 auto;
     }
     .fail {
-      background: rgba(255, 154, 125, 0.59);
+      background: transparent;
     }
     .success {
-      background: rgba(0, 255, 222, 0.65);
+      background: transparent;
     }
     button {
       z-index: 9999999;
-      position: fixed;
-      background: yellow;
+      display: block;
+      background:transparent;
+      min-width: 60vw;
+      min-height: 8vh;
+      font-size: 4vh;
+      margin: 4vh auto;
+    }
+    .score {
+      margin: auto; 
+      width: 100%;
+      text-align: center;
     }
   }
 
   .timer, .score, .action-btns {
+      font-family: 'Aladin', cursive;
     position: absolute;
     font-size: 25px;
     z-index: 99999;
@@ -186,7 +202,7 @@ page-game {
             top: 25px;
           }
           ion-icon {
-            font-family: Roboto, "Helvetica Neue", sans-serif;
+            font-family: 'Aladin', cursive;
             font-size: 10px;
             margin-top: 5px;
             color: rgb(180,180,180);
@@ -203,5 +219,10 @@ page-game {
         }
       }
     }
+  }
+  ion-app.md {
+    font-family: 'Aladin', cursive;
+    font-size: 1.4rem;
+    background-color: #fff;
   }
 }

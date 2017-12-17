@@ -16,13 +16,14 @@
           </div>
           <div class="success" *ngIf="level.isSuccess">
             <h1>SUCCESS</h1>
-            <button ion-button color="danger">Exit</button>
-            <button (click)="startNextLevel()" ion-button color="secondary">Continue</button>
+            <button ion-button round outline (click)="startNextLevel()" ion-button color="white">Continue</button>
+            <button ion-button round outline color="white">Exit</button>
+                
           </div>
           <div class="fail" *ngIf="level.isFail">
             <h1>FAIL</h1>
-            <button ion-button color="danger">Exit</button>
-            <button (click)="startNextLevel()" ion-button color="secondary">Start Over</button>
+            <button ion-button round outline (click)="startNextLevel()" ion-button color="white">Start Over</button>
+            <button ion-button round outline  color="white">Exit</button>
           </div>
     </div>
   </div>
