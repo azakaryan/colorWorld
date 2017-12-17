@@ -14,17 +14,17 @@ export class GamePage {
   private ctx = null;
   private canvas = null;
   public level = null;
-  public currentLevel = 0;
+  public currentLevel = 1;
   public levels = [
     {
       requiredColor: "rgb(0,255,255)",
-      timeLimit: 15,
+      timeLimit: 1500,
       numberOfSections: 1,
       currentLevel: 1,
       initialColor: 'white'
     },
     {
-      requiredColor: "rgb(255,255, 0)",
+      requiredColor: "rgb(255,255,0)",
       timeLimit: 10,
       numberOfSections: 1,
       currentLevel: 2
@@ -36,11 +36,35 @@ export class GamePage {
       currentLevel: 3
     },
     {
-      requiredColor: "rgb(0,127,255)",
+      requiredColor: "rgb(0,128,255)",
       timeLimit: 20,
       numberOfSections: 2,
       currentLevel: 4
     },
+    {
+      requiredColor: "rgb(255,128,0)",
+      timeLimit: 18,
+      numberOfSections: 2,
+      currentLevel: 5
+    },
+    {
+      requiredColor: "rgb(0,128,0)",
+      timeLimit: 15,
+      numberOfSections: 2,
+      currentLevel: 6
+    },
+    {
+      requiredColor: "rgb(128,128,255)",
+      timeLimit: 12,
+      numberOfSections: 2,
+      currentLevel: 7
+    },
+    {
+      requiredColor: "rgb(0,128,128)",
+      timeLimit: 10,
+      numberOfSections: 2,
+      currentLevel: 8
+    }
   ];
 
 
@@ -53,7 +77,7 @@ export class GamePage {
     this.ctx = document.getElementById('chameleon');
     this.canvas.width = this.platform.width();
     this.canvas.height = this.platform.height();
-    this.level = new Level(this.canvas, this.ctx, this.levels[this.currentLevel], this.completionTriggerFunction.bind(this));
+    this.level = new Level(this.canvas, this.ctx, this.levels[this.currentLevel-1], this.completionTriggerFunction.bind(this), this.tikTriggerFunction.bind(this));
   }
 
   goHome () {
@@ -63,29 +87,36 @@ export class GamePage {
   }
 
   startNextLevel() {
-    debugger;
-    this.cleanUp();
-    this.level = new Level(this.canvas, this.ctx, this.levels[this.currentLevel], this.completionTriggerFunction.bind(this));
+    if (this.level.currentLevel < this.levels.length) {
+      debugger;
+      this.cleanUp();
+      return this.level = new Level(this.canvas, this.ctx, this.levels[this.currentLevel-1], this.completionTriggerFunction.bind(this), this.tikTriggerFunction.bind(this));
+    }
+    alert("GAME OVER");
   }
 
   cleanUp() {
+    debugger;
     this.level.cleanUp();
-    this.currentLevel++;
   }
 
   completionTriggerFunction(status) {
     this.level.isPausVisible = false;
     if (status) {
-      debugger;
-      // Go To next level
-      this.currentLevel++;
-      this.level.isSuccess = true;
-      this.level.cleanUp();
+      setTimeout(() => {
+        // Go To next level
+        this.currentLevel++;
+        this.level.isSuccess = true;
+        this.level.cleanUp();
+      }, 800);
     } else {
       this.level.isFail = true;
       // Repeat with the same level
     }
-    // this.level = new Level(this.canvas, this.ctx, this.levels[this.currentLevel], this.completionTriggerFunction);
+  }
+
+  tikTriggerFunction(time) {
+    console.log(time);
   }
 }
 
@@ -103,11 +134,11 @@ class Level {
   public numberOfSections:number;
   public currentLevel:number;
   public isPaused: boolean;
-  public isPausVisible: boolean
+  public isPausVisible: boolean;
   public isSuccess: boolean;
   public isFail: boolean;
 
-  constructor(public canvas, public ctx, opt, public completionTriggerFunction){
+  constructor(public canvas, public ctx, opt, public completionTriggerFunction, public tikTriggerFunction){
     this.requiredColor = opt.requiredColor || 'white';
     this.timeLimit = opt.timeLimit || 25;
     this.numberOfSections = opt.numberOfSections || 25;
@@ -116,11 +147,12 @@ class Level {
     this.isPaused = false;
     this.isSuccess = false;
     this.isFail = false;
-    this.timer = new Timer(completionTriggerFunction, this.timeLimit);
-
+    this.timer = new Timer(completionTriggerFunction, tikTriggerFunction, this.timeLimit);
+    debugger;
     this.box = new Box(canvas, ctx, {});
     this.box.update(opt.initialColor);
     this.canvas.style.backgroundColor = opt.requiredColor;
+    this.isPausVisible = true;
   }
 
   pause() {
@@ -150,7 +182,11 @@ class Level {
   }
 
   isRequiredColorPicked(){
-    return this.box.getCurrentPickedColor() === this.requiredColor;
+    const t = this.box.getCurrentPickedColor() === this.requiredColor;
+
+    console.log("REQUIRED", this.requiredColor)
+    console.log("Choosed Colores are: ", t);
+    return t;
   }
 
   private cleanUp() {
@@ -165,7 +201,7 @@ export class Timer {
   private tmp:number;
   private el:string;
 
-  constructor(public completionTriggerFunction:any, public timeLimit:any) {
+  constructor(public completionTriggerFunction:any, public tikTriggerFunction:any, public timeLimit:any) {
     this.tmp = this.time = this.timeLimit;
     this.start();
   }
@@ -176,7 +212,7 @@ export class Timer {
       let m=(c/60)>>0;
       let s=(c-m*60)+'';
       this.el = ''+m+':'+(s.length>1?'':'0')+s;
-
+      this.tikTriggerFunction(c);
       if (this.tmp === 0) {
         setTimeout(() => {
           this.complete();
