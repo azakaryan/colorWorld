@@ -49,8 +49,8 @@ export class GamePage {
 
   ionViewDidLoad() {
     // window.aa = this;
-    this.canvas = document.getElementById('canvas');
-    this.ctx = this.canvas.getContext('2d');
+    this.canvas = document.getElementById('background');
+    this.ctx = document.getElementById('chameleon');
     this.canvas.width = this.platform.width();
     this.canvas.height = this.platform.height();
     this.level = new Level(this.canvas, this.ctx, this.levels[this.currentLevel], this.completionTriggerFunction.bind(this));
@@ -119,8 +119,8 @@ class Level {
     this.timer = new Timer(completionTriggerFunction, this.timeLimit);
 
     this.box = new Box(canvas, ctx, {});
-    this.box.update({color: opt.initialColor});
-    this.box.drawSmile();
+    this.box.update(opt.initialColor);
+    this.canvas.style.backgroundColor = opt.requiredColor;
   }
 
   pause() {
@@ -154,7 +154,6 @@ class Level {
   }
 
   private cleanUp() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.timer.cleanUp();
   };
 }
@@ -224,67 +223,67 @@ class Box {
 
 
   constructor(public canvas, public ctx:any, opt){
-    this.w = opt.w || 150;
-    this.h = opt.h || 150;
-    this.x = opt.x || (canvas.width-this.w)/2;
-    this.y = opt.y || (canvas.height - 196 - this.h)/2;
+    // this.w = opt.w || 150;
+    // this.h = opt.h || 150;
+    // this.x = opt.x || (canvas.width-this.w)/2;
+    // this.y = opt.y || (canvas.height - 196 - this.h)/2;
     this.redValue = opt.redValue || 255;
     this.greenValue = opt.greenValue || 255;
     this.blueValue = opt.blueValue || 255;
 
-    this.xDir = opt.xDir || 0;
-    this.yDir = opt.yDir || 2;
-    this.speed = opt.speed || 2;
+    // this.xDir = opt.xDir || 0;
+    // this.yDir = opt.yDir || 2;
+    // this.speed = opt.speed || 2;
   }
 
   updateColor() {
     const color = this.getCurrentPickedColor();
-    this.update({color});
-    this.drawSmile();
+    this.update(color);
   }
   getCurrentPickedColor() {
     return `rgb(${this.redValue},${this.greenValue},${this.blueValue})`;
   }
 
-  update(opt) {
-    this.ctx.fillStyle = opt.color || this.ctx.fillStyle;
-    this.x = opt.x || this.x;
-    this.y = opt.y || this.y;
-    this.w = opt.w || this.w;
-    this.h = opt.h || this.h;
+  update(color) {
+    // this.ctx.fillStyle = opt.color || this.ctx.fillStyle;
+    // this.x = opt.x || this.x;
+    // this.y = opt.y || this.y;
+    // this.w = opt.w || this.w;
+    // this.h = opt.h || this.h;
 
-    this.xDir = opt.xDir || this.xDir;
-    this.yDir = opt.yDir || this.yDir;
-    this.speed = opt.speed || this.speed;
+    // this.xDir = opt.xDir || this.xDir;
+    // this.yDir = opt.yDir || this.yDir;
+    // this.speed = opt.speed || this.speed;
+    this.ctx.style.backgroundColor = color;
   }
 
-  drawRectangle() {
-    this.ctx.fillRect(this.x, this.y, this.w, this.h);
-  }
+  // drawRectangle() {
+  //   this.ctx.fillRect(this.x, this.y, this.w, this.h);
+  // }
 
-  drawSmile () {
-    const x = this.x + 35;
-    const y = this.y + 35;
-    this.ctx.beginPath();
-    this.ctx.arc(x, y, 99,0,Math.PI*2); // head
+  // drawSmile () {
+  //   const x = this.x + 35;
+  //   const y = this.y + 35;
+  //   this.ctx.beginPath();
+  //   this.ctx.arc(x, y, 99,0,Math.PI*2); // head
 
-    this.ctx.stroke();
-    this.ctx.fill();
+  //   this.ctx.stroke();
+  //   this.ctx.fill();
 
-    this.ctx.beginPath();
-    this.ctx.moveTo(x + 70, y);
-    this.ctx.arc(x, y, 70,0,Math.PI);   // Mouth
-    this.ctx.stroke();
+  //   this.ctx.beginPath();
+  //   this.ctx.moveTo(x + 70, y);
+  //   this.ctx.arc(x, y, 70,0,Math.PI);   // Mouth
+  //   this.ctx.stroke();
 
-    this.ctx.beginPath();
-    this.ctx.fillStyle = 'black';
-    this.ctx.moveTo(x-40, y-35);
-    this.ctx.arc(x-40, y-35,12,0,Math.PI*2);  // Left eye
-    this.ctx.fill();
+  //   this.ctx.beginPath();
+  //   this.ctx.fillStyle = 'black';
+  //   this.ctx.moveTo(x-40, y-35);
+  //   this.ctx.arc(x-40, y-35,12,0,Math.PI*2);  // Left eye
+  //   this.ctx.fill();
 
-    this.ctx.beginPath();
-    this.ctx.moveTo(x+40, y-35);
-    this.ctx.arc(x+40, y-35,12,0,Math.PI*2);  // Right eye
-    this.ctx.fill();
-  }
+  //   this.ctx.beginPath();
+  //   this.ctx.moveTo(x+40, y-35);
+  //   this.ctx.arc(x+40, y-35,12,0,Math.PI*2);  // Right eye
+  //   this.ctx.fill();
+  // }
 }

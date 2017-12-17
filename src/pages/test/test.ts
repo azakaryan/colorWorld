@@ -82,10 +82,6 @@ export class TestPage {
 
 
 
-
-
-
-
 class Level {
   public box:Box = null;
   public timer:Timer = null;

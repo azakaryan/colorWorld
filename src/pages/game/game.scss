@@ -1,4 +1,112 @@
 page-game {
+
+
+  @keyframes animateChameleon {
+      0%   { background-image: url('/assets/imgs/chameleon_01.png'); }
+      25%  { background-image: url('/assets/imgs/chameleon_04.png'); }
+      50%  { background-image: url('/assets/imgs/chameleon_03.png'); }
+      75%  { background-image: url('/assets/imgs/chameleon_01.png'); }
+      100% { background-image: url('/assets/imgs/chameleon_02.png'); }
+  }
+
+  @-webkit-keyframes animateChameleon {
+      0%   { background-image: url('/assets/imgs/chameleon_01.png'); }
+      25%  { background-image: url('/assets/imgs/chameleon_04.png'); }
+      50%  { background-image: url('/assets/imgs/chameleon_03.png'); }
+      75%  { background-image: url('/assets/imgs/chameleon_01.png'); }
+      100% { background-image: url('/assets/imgs/chameleon_02.png'); }
+  }
+
+
+
+  // you would probably need to change position to absolute and add width and height
+  .chameleon-container {
+      background-image: url('/assets/imgs/chameleon_01.png');
+      overflow: hidden;
+      position: relative;
+      display: block;
+      width: 50vw;
+      height: 50vh;
+      z-index: 1;
+      background-blend-mode: multiply;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      -webkit-animation:animateChameleon 5s linear infinite;
+      -moz-animation:animateChameleon 0.1s linear infinite;
+      -ms-animation:animateChameleon 0.1s linear infinite;
+      -o-animation:animateChameleon 0.1s linear infinite;
+          animation:animateChameleon 0.5s linear infinite;       
+      // mask-image: url('/assets/imgs/chameleon_mask.png');
+      // mask-size: 100%;
+      // mask-repeat: no-repeat;
+  }
+
+  .chamelon-child {
+      background-image: url('/assets/imgs/chameleon_01.png');
+      background-color: #0f0;
+      background-blend-mode: multiply;
+      background-repeat: no-repeat;
+      background-size: 100%;    
+      width: 50vw;
+      height: 50vh;
+      position: absolute;
+      right: 0;
+      top: 0;
+      mask-image: url('/assets/imgs/chameleon_mask.png');
+      mask-size: 100%;
+      mask-repeat: no-repeat;
+      -webkit-animation:animateChameleon 5s linear infinite;
+      -moz-animation:animateChameleon 0.1s linear infinite;
+      -ms-animation:animateChameleon 0.1s linear infinite;
+      -o-animation:animateChameleon 0.1s linear infinite;
+          animation:animateChameleon 0.5s linear infinite;
+  }
+
+
+  // .chameleon-frame-1,
+  // .chameleon-frame-1 > .chamelon-child {
+  //     background-image: url('/assets/imgs/chameleon_01.png');
+  // }
+  // .chameleon-frame-2,
+  // .chameleon-frame-2 > .chamelon-child {
+  //     background-image: url('/assets/imgs/chameleon_02.png');
+  // }
+  // .chameleon-frame-3,
+  // .chameleon-frame-3 > .chamelon-child {
+  //     background-image: url('/assets/imgs/chameleon_03.png');
+  // }
+  // .chameleon-frame-4,
+  // .chameleon-frame-4 > .chamelon-child {
+  //     background-image: url('/assets/imgs/chameleon_04.png');
+  // }
+
+
+  @keyframes animatedBackground {
+      from { background-position: 0 0; }
+      to { background-position: 95% 0; }
+  }
+
+  @-webkit-keyframes animatedBackground {
+      from { background-position: 0 0; }
+      to { background-position: 90% 0; }
+  }
+
+  // add this class to the background element 
+  // modify background-color property for changing the color
+  .container {
+      background-color: #f00;
+      background-image: url('/assets/imgs/bg.png');
+      background-position: 0px 0px;
+      background-repeat: repeat-x;
+      //background-size:cover;
+      -webkit-animation:animatedBackground 5s linear infinite;
+      -moz-animation:animatedBackground 0.1s linear infinite;
+      -ms-animation:animatedBackground 0.1s linear infinite;
+      -o-animation:animatedBackground 0.1s linear infinite;
+          animation:animatedBackground 3s linear infinite;
+  }
+
+
   .overlay {
     position: fixed;
     z-index: 1051;
