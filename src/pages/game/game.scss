@@ -1,5 +1,7 @@
 page-game {
-
+  .scroll-content {
+    background: black;
+  }
 
   @keyframes animateChameleon {
       0%   { background-image: url('/assets/imgs/chameleon_01.png'); }
@@ -143,7 +145,7 @@ page-game {
       margin: 4vh auto;
     }
     .score {
-      margin: auto; 
+      margin: auto;
       width: 100%;
       text-align: center;
     }
@@ -180,6 +182,8 @@ page-game {
     height: 100%;
     width: 100%;
     margin: 0px;
+    transform-origin: top;
+    transition: transform 30s;
     canvas {
       background: #0000ff;
     }

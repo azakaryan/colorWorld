@@ -18,7 +18,7 @@ export class GamePage {
   public levels = [
     {
       requiredColor: "rgb(0,255,255)",
-      timeLimit: 1500,
+      timeLimit: 15,
       numberOfSections: 1,
       currentLevel: 1,
       initialColor: 'white'
@@ -116,7 +116,15 @@ export class GamePage {
   }
 
   tikTriggerFunction(time) {
-    console.log(time);
+    // this.level.heightDropSizePerSecondInitial = parseInt(this.level.heightDropSizePerSecondInitial) + parseInt(this.level.heightDropSizePerSecond);
+    // document.getElementById("background").style.marginTop = this.level.heightDropSizePerSecondInitial + 'px';
+    // const element = document.getElementById("background");
+    // // element.style.width = element.style.width -
+    // // = document.getElementById("background").style.margin;
+    //
+    // console.log(this.level.heightDropSizePerSecondInitial, this.level.heightDropSizePerSecond);
+    // console.log(this.level.heightDropSizePerSecondInitial);
+    // // console.log(document.getElementById("background").style.margin);
   }
 }
 
@@ -137,6 +145,8 @@ class Level {
   public isPausVisible: boolean;
   public isSuccess: boolean;
   public isFail: boolean;
+  public heightDropSizePerSecond: number;
+  public heightDropSizePerSecondInitial: number;
 
   constructor(public canvas, public ctx, opt, public completionTriggerFunction, public tikTriggerFunction){
     this.requiredColor = opt.requiredColor || 'white';
@@ -148,15 +158,15 @@ class Level {
     this.isSuccess = false;
     this.isFail = false;
     this.timer = new Timer(completionTriggerFunction, tikTriggerFunction, this.timeLimit);
-    debugger;
     this.box = new Box(canvas, ctx, {});
     this.box.update(opt.initialColor);
     this.canvas.style.backgroundColor = opt.requiredColor;
+    this.heightDropSizePerSecond = 1.2 * this.box.x/opt.timeLimit;
+    this.heightDropSizePerSecondInitial = 0;
     this.isPausVisible = true;
   }
 
   pause() {
-    debugger;
     this.isPausVisible = this.isPaused = true;
     this.timer.pause();
   }
@@ -168,10 +178,7 @@ class Level {
   }
 
   complete() {
-    debugger;
-    if (this.isRequiredColorPicked()){
-
-    }
+    if (this.isRequiredColorPicked()){}
   }
 
   colorChanged() {
@@ -184,13 +191,14 @@ class Level {
   isRequiredColorPicked(){
     const t = this.box.getCurrentPickedColor() === this.requiredColor;
 
-    console.log("REQUIRED", this.requiredColor)
+    console.log("REQUIRED", this.requiredColor);
     console.log("Choosed Colores are: ", t);
     return t;
   }
 
   private cleanUp() {
     this.timer.cleanUp();
+    this.heightDropSizePerSecondInitial = 0;
   };
 }
 
@@ -259,10 +267,10 @@ class Box {
 
 
   constructor(public canvas, public ctx:any, opt){
-    // this.w = opt.w || 150;
-    // this.h = opt.h || 150;
-    // this.x = opt.x || (canvas.width-this.w)/2;
-    // this.y = opt.y || (canvas.height - 196 - this.h)/2;
+    this.w = opt.w || 150;
+    this.h = opt.h || 150;
+    this.x = opt.x || (canvas.width-this.w)/2;
+    this.y = opt.y || (canvas.height - 196 - this.h)/2;
     this.redValue = opt.redValue || 255;
     this.greenValue = opt.greenValue || 255;
     this.blueValue = opt.blueValue || 255;

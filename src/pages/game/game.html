@@ -12,18 +12,18 @@
     <div class="inner">
         <div class="paused" *ngIf="level.isPaused">
             Paused...
-            <button ion-button color="danger" (click)="goHome()">Exit</button>
+            <button ion-button color="danger" (click)="goHome()">Main Menu</button>
           </div>
           <div class="success" *ngIf="level.isSuccess">
             <h1>SUCCESS</h1>
             <button ion-button round outline (click)="startNextLevel()" ion-button color="white">Continue</button>
-            <button ion-button round outline color="white">Exit</button>
-                
+            <button ion-button round outline color="white" (click)="goHome()">Main Menu</button>
+
           </div>
           <div class="fail" *ngIf="level.isFail">
             <h1>FAIL</h1>
             <button ion-button round outline (click)="startNextLevel()" ion-button color="white">Start Over</button>
-            <button ion-button round outline  color="white">Exit</button>
+            <button ion-button round outline  color="white" (click)="goHome()">Main Menu</button>
           </div>
     </div>
   </div>
@@ -65,9 +65,9 @@
         </ion-item>
 
         <ion-item>
-          <ion-range (ionChange)="level.colorChanged()" min="0" max="255" step="{{256/level.numberOfSections}}" snaps="true" [(ngModel)]="level.box.blueValue">
-            <ion-icon small range-left>0</ion-icon>
-            <ion-icon small class="_right" range-right>255</ion-icon>
+          <ion-range (ionChange)="level.colorChanged()" color="blue" min="0" max="255" step="{{256/level.numberOfSections}}" snaps="true" [(ngModel)]="level.box.blueValue">
+            <ion-icon small range-left color="blue">0</ion-icon>
+            <ion-icon small class="_right" color="blue" range-right>255</ion-icon>
           </ion-range>
         </ion-item>
       </ion-list>
