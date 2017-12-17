@@ -36,8 +36,8 @@ page-game {
       -moz-animation:animateChameleon 0.1s linear infinite;
       -ms-animation:animateChameleon 0.1s linear infinite;
       -o-animation:animateChameleon 0.1s linear infinite;
-          animation:animateChameleon 0.5s linear infinite;      
-          
+          animation:animateChameleon 0.5s linear infinite;
+
 
       position:absolute; /*it can be fixed too*/
       left:0; right:0;
@@ -55,7 +55,7 @@ page-game {
       background-color: #0f0;
       background-blend-mode: multiply;
       background-repeat: no-repeat;
-      background-size: 100%;    
+      background-size: 100%;
       background-position: center;
       width: 25vw;
       height: 100%;
@@ -84,7 +84,7 @@ page-game {
       to { background-position: 90% 0; }
   }
 
-  // add this class to the background element 
+  // add this class to the background element
   // modify background-color property for changing the color
   .container {
       background-color: #f00;
@@ -120,10 +120,10 @@ page-game {
       margin: 0 auto;
     }
     .fail {
-      background: red;
+      background: rgba(255, 154, 125, 0.59);
     }
     .success {
-      background: green;
+      background: rgba(0, 255, 222, 0.65);
     }
     button {
       z-index: 9999999;
@@ -146,7 +146,7 @@ page-game {
 
   .score {
     right: 150px;
-    top: 17px;
+    top: 12px;
     margin: 0 auto;
   }
 
